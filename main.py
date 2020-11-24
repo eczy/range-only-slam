@@ -81,7 +81,8 @@ class Env:
         )
         perceived_intercepts = np.array(edges.intersection(vision))
         if self.obs_awgn:
-            self.perceived_intercepts += np.random.normal(*self.obs_awgn, size=2)
+            noise_x, noise_y = np.random.normal(*self.obs_awgn, size=2)
+            self.perceived_intercepts += np.array([noise_x * np.cos(theta), noise_y * np.sin(theta)])
         return actual_intercepts, perceived_intercepts
 
 
